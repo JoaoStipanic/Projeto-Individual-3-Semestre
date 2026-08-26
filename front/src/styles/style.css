@@ -23,7 +23,7 @@
   /* Texto */
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
-  --text-muted: #64748B;
+  --text-muted: #7a92b3;
 
   /* Tipografia */
   --font-display: 'Poppins', sans-serif;
@@ -57,7 +57,10 @@ body{
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--text-primary);
-  background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 55%, var(--bg-start) 100%);
+  background-image: url("../assets/fundo.png"); #important
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 55%, var(--bg-start) 100%); */
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
@@ -254,10 +257,9 @@ button{ font-family: inherit; cursor: pointer; }
   flex-wrap: wrap;
   padding: 22px 28px;
   margin-bottom: 40px;
-  background: rgba(31,41,55,0.55);
-  backdrop-filter: blur(18px);
+  background: rgba(8, 11, 15, 0.5);
+  backdrop-filter: blur(35px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
 }
@@ -336,7 +338,7 @@ button{ font-family: inherit; cursor: pointer; }
   gap: 6px;
   padding: 8px 18px;
   background: var(--field-bg);
-  border: 1px solid var(--border-soft);
+  /* border: 1px solid var(--border-soft); */
   border-radius: var(--radius-md);
 }
 .header-panel__label{
@@ -344,6 +346,7 @@ button{ font-family: inherit; cursor: pointer; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
+  
 }
 .header-panel__badge{
   font-family: var(--font-display);
@@ -468,10 +471,10 @@ button{ font-family: inherit; cursor: pointer; }
    PAINEL DE CADASTRO
    ========================================================= */
 .panel{
-  background: rgba(31,41,55,0.5);
-  backdrop-filter: blur(16px);
+  background: rgba(8, 11, 15, 0.5);
+  backdrop-filter: blur(35px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-soft);
+  /* border: 1px solid var(--border-soft); */
   border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: var(--shadow-soft);
@@ -669,7 +672,7 @@ button{ font-family: inherit; cursor: pointer; }
 .poke-card{
   position: relative;
   background: linear-gradient(160deg, var(--card-bg-soft), var(--card-bg));
-  border: 1px solid var(--border-soft-strong);
+  /* border: 1px solid var(--border-soft-strong); */
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -872,12 +875,6 @@ button{ font-family: inherit; cursor: pointer; }
   from{ width: 0%; }
 }
 
-.poke-card__footer{
-  padding: 16px 22px;
-  border-top: 1px solid var(--border-soft);
-  display: flex;
-  justify-content: center;
-}
 .poke-card__seal{
   display: inline-flex;
   align-items: center;
@@ -890,11 +887,6 @@ button{ font-family: inherit; cursor: pointer; }
   padding: 6px 16px;
   border: 1px dashed rgba(255,203,5,0.4);
   border-radius: 999px;
-}
-
-.poke-card__footer--actions{
-  justify-content: space-between;
-  gap: 10px;
 }
 
 .btn-mini{
@@ -1133,54 +1125,6 @@ button{ font-family: inherit; cursor: pointer; }
 .chart-legend__dot[data-type="ROCK"]{ background: var(--t-rock); }
 
 /* =========================================================
-   FOOTER
-   ========================================================= */
-.site-footer{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 26px 8px 32px;
-  border-top: 1px solid var(--border-soft);
-  margin-top: 8px;
-}
-.site-footer__copy{
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.site-footer__tech{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.site-footer__tech-label{
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-right: 4px;
-}
-.tech-badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 999px;
-  background: var(--field-bg);
-  border: 1px solid var(--border-soft-strong);
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-}
-.tech-badge:hover{
-  color: var(--yellow);
-  border-color: var(--yellow);
-  transform: translateY(-2px);
-}
-.tech-badge i{ font-size: 12px; }
-
-/* =========================================================
    ANIMAÇÕES GERAIS
    ========================================================= */
 @keyframes fadeIn{
@@ -1224,5 +1168,4 @@ button{ font-family: inherit; cursor: pointer; }
   .select-wrap--compact select{ min-width: 0; flex: 1; }
   .chart-panel__content{ flex-direction: column; }
   .chart-legend{ grid-template-columns: repeat(2, auto); width: 100%; justify-content: space-between; }
-  .site-footer{ flex-direction: column; align-items: flex-start; }
 }
