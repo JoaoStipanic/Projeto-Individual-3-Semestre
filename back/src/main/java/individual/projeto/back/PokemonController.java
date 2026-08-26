@@ -50,17 +50,17 @@ public class PokemonController {
 
         try {
             jdbcTemplate.update(connection -> {
-                PreparedStatement statement  = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement ps  = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-                statement.setString(1, pokemon.getNome());
-                statement.setString(2, pokemon.getTipo1());
-                statement.setString(3, pokemon.getTipo2());
-                statement.setString(4, pokemon.getCorPredominante());
-                statement.setString(5, pokemon.getHabitat());
-                statement.setInt(6, pokemon.getFaseEvolucao());
-                statement.setInt(7, pokemon.getGeracao());
+                ps.setString(1, pokemon.getNome());
+                ps.setString(2, pokemon.getTipo1());
+                ps.setString(3, pokemon.getTipo2());
+                ps.setString(4, pokemon.getCorPredominante());
+                ps.setString(5, pokemon.getHabitat());
+                ps.setInt(6, pokemon.getFaseEvolucao());
+                ps.setInt(7, pokemon.getGeracao());
 
-                return statement;
+                return ps;
             }, keyHolder);
 
             Integer idGerado = keyHolder.getKey().intValue();

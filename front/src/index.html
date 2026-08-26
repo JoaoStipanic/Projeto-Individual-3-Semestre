@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pokédex Ideal — Cadastro de Pokémon</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== BACKGROUND DECORATIVO ===================== -->
+<div class="bg-decor" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--red"></div>
+  <div class="bg-glow bg-glow--blue"></div>
+  <div class="bg-glow bg-glow--yellow"></div>
+  <div class="bg-hex bg-hex--1"></div>
+  <div class="bg-hex bg-hex--2"></div>
+  <div class="bg-hex bg-hex--3"></div>
+  <div class="bg-pokeball bg-pokeball--1"></div>
+  <div class="bg-pokeball bg-pokeball--2"></div>
+  <div class="bg-pokeball bg-pokeball--3"></div>
+  <div class="bg-line bg-line--1"></div>
+  <div class="bg-line bg-line--2"></div>
+  <span class="bg-dot bg-dot--1"></span>
+  <span class="bg-dot bg-dot--2"></span>
+  <span class="bg-dot bg-dot--3"></span>
+  <span class="bg-dot bg-dot--4"></span>
+  <span class="bg-dot bg-dot--5"></span>
+</div>
+
+<div class="app-shell">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="topo">
+    <div class="site-header__left">
+      <div class="brand-pokeball" aria-hidden="true">
+        <span class="brand-pokeball__line"></span>
+        <span class="brand-pokeball__core"></span>
+      </div>
+      <div class="site-header__titles">
+        <h1 class="site-header__title">Pokédex <span>Ideal</span></h1>
+        <p class="site-header__subtitle">Monte sua coleção personalizada de Pokémon.</p>
+      </div>
+    </div>
+
+    <div class="site-header__right">
+      <div class="header-panel">
+        <span class="header-panel__label">Total cadastrado</span>
+        <span class="header-panel__badge" id="contador-pokemon">0 Pokémon</span>
+      </div>
+      <button type="button" class="btn btn--ghost" id="btn-minha-pokedex">
+        <i class="fa-solid fa-bookmark"></i>
+        Minha Pokédex
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main class="main-content">
+
+    <section class="panel panel--cadastro" aria-labelledby="titulo-cadastro">
+      <div class="panel__grid">
+
+        <!-- ---------- COLUNA FORMULÁRIO ---------- -->
+        <div class="form-column">
+          <div class="section-heading">
+            <span class="section-heading__eyebrow"><i class="fa-solid fa-pen-to-square"></i> Novo registro</span>
+            <h2 id="titulo-cadastro">Cadastrar Pokémon</h2>
+            <p>Preencha os dados abaixo para adicionar um novo Pokémon à sua coleção.</p>
+          </div>
+
+          <form class="pokemon-form" id="form-cadastro-pokemon" novalidate>
+
+            <!-- NOME -->
+            <div class="form-field">
+              <label for="nome" class="form-field__label">
+                <i class="fa-solid fa-signature"></i> Nome
+              </label>
+              <input type="text" id="nome" name="nome" class="form-field__input" placeholder="Pikachu" autocomplete="off">
+              <span class="form-field__hint">Nome do Pokémon.</span>
+            </div>
+
+            <!-- TIPO 1 e TIPO 2 -->
+            <div class="form-field-row">
+              <div class="form-field">
+                <label for="tipo1" class="form-field__label">
+                  <i class="fa-solid fa-bolt"></i> Tipo Primário
+                </label>
+                <div class="select-wrap">
+                  <select id="tipo1" name="tipo1" class="form-field__select">
+                    <option value="" disabled selected>Selecione um tipo</option>
+                    <option value="normal" data-dot="#A8A878">⚪Normal</option>
+                    <option value="fogo" data-dot="#F08030">🔥Fogo</option>
+                    <option value="agua" data-dot="#6890F0">💧Água</option>
+                    <option value="planta" data-dot="#78C850">🍃Planta</option>
+                    <option value="eletrico" data-dot="#F8D030">⚡Elétrico</option>
+                    <option value="gelo" data-dot="#98D8D8">🧊Gelo</option>
+                    <option value="luta" data-dot="#C03028">🥊Luta</option>
+                    <option value="veneno" data-dot="#A040A0">☣️Veneno</option>
+                    <option value="terrestre" data-dot="#E0C068">⛰️Terrestre</option>
+                    <option value="voador" data-dot="#A890F0">🪽Voador</option>
+                    <option value="psiquico" data-dot="#F85888">👁️Psíquico</option>
+                    <option value="inseto" data-dot="#A8B820">🪲Inseto</option>
+                    <option value="pedra" data-dot="#B8A038">🪨Pedra</option>
+                    <option value="fantasma" data-dot="#705898">👻Fantasma</option>
+                    <option value="dragao" data-dot="#7038F8">🐉Dragão</option>
+                    <option value="sombrio" data-dot="#705848">🌑Sombrio</option>
+                    <option value="metal" data-dot="#B8B8D0">⛓️Metal</option>
+                    <option value="fada" data-dot="#EE99AC">🧚🏻‍♀️Fada</option>
+                  </select>
+                  <span class="select-wrap__dot" style="--dot-color:#A8A878"></span>
+                  <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+                </div>
+                <span class="form-field__hint">Tipo elemental principal.</span>
+              </div>
+
+              <div class="form-field">
+                <label for="tipo2" class="form-field__label">
+                  <i class="fa-solid fa-bolt-lightning"></i> Tipo Secundário
+                </label>
+                <div class="select-wrap">
+                  <select id="tipo2" name="tipo2" class="form-field__select">
+                    <option value="nenhum" data-dot="#4B5563" selected>Nenhum</option>
+                    <option value="normal" data-dot="#A8A878">⚪Normal</option>
+                    <option value="fogo" data-dot="#F08030">🔥Fogo</option>
+                    <option value="agua" data-dot="#6890F0">💧Água</option>
+                    <option value="planta" data-dot="#78C850">🍃Planta</option>
+                    <option value="eletrico" data-dot="#F8D030">⚡Elétrico</option>
+                    <option value="gelo" data-dot="#98D8D8">🧊Gelo</option>
+                    <option value="luta" data-dot="#C03028">🥊Luta</option>
+                    <option value="veneno" data-dot="#A040A0">☣️Veneno</option>
+                    <option value="terrestre" data-dot="#E0C068">⛰️Terrestre</option>
+                    <option value="voador" data-dot="#A890F0">🪽Voador</option>
+                    <option value="psiquico" data-dot="#F85888">👁️Psíquico</option>
+                    <option value="inseto" data-dot="#A8B820">🪲Inseto</option>
+                    <option value="pedra" data-dot="#B8A038">🪨Pedra</option>
+                    <option value="fantasma" data-dot="#705898">👻Fantasma</option>
+                    <option value="dragao" data-dot="#7038F8">🐉Dragão</option>
+                    <option value="sombrio" data-dot="#705848">🌑Sombrio</option>
+                    <option value="metal" data-dot="#B8B8D0">⛓️Metal</option>
+                    <option value="fada" data-dot="#EE99AC">🧚🏻‍♀️Fada</option>
+                  </select>
+                  <span class="select-wrap__dot" style="--dot-color:#4B5563"></span>
+                  <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+                </div>
+                <span class="form-field__hint">Tipo elemental adicional (opcional).</span>
+              </div>
+            </div>
+
+            <!-- COR PREDOMINANTE -->
+            <div class="form-field">
+              <label for="corPredominante" class="form-field__label">
+                <i class="fa-solid fa-palette"></i> Cor Predominante
+              </label>
+              <div class="select-wrap">
+                <select id="corPredominante" name="corPredominante" class="form-field__select">
+                  <option value="" disabled selected>Selecione uma cor</option>
+                  <option value="VERMELHO" data-dot="#E3350D">Vermelho</option>
+                  <option value="AZUL" data-dot="#3B4CCA">Azul</option>
+                  <option value="VERDE" data-dot="#4CAF50">Verde</option>
+                  <option value="AMARELO" data-dot="#FFCB05">Amarelo</option>
+                  <option value="ROXO" data-dot="#8E44AD">Roxo</option>
+                  <option value="ROSA" data-dot="#EE99AC">Rosa</option>
+                  <option value="PRETO" data-dot="#1F2937">Preto</option>
+                  <option value="BRANCO" data-dot="#F9FAFB">Branco</option>
+                  <option value="MARROM" data-dot="#8B5E3C">Marrom</option>
+                  <option value="CINZA" data-dot="#9CA3AF">Cinza</option>
+                  <option value="LARANJA" data-dot="#F08030">Laranja</option>
+                </select>
+                <span class="select-wrap__dot" style="--dot-color:#E3350D"></span>
+                <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+              </div>
+              <span class="form-field__hint">Cor mais marcante do Pokémon.</span>
+            </div>
+
+            <!-- HABITAT -->
+            <div class="form-field">
+              <label for="habitat" class="form-field__label">
+                <i class="fa-solid fa-mountain-sun"></i> Habitat
+              </label>
+              <div class="select-wrap">
+                <select id="habitat" name="habitat" class="form-field__select">
+                  <option value="" disabled selected>Selecione um habitat</option>
+                  <option value="FLORESTA">🌳 Floresta</option>
+                  <option value="MONTANHA">⛰️ Montanha</option>
+                  <option value="OCEANO">🌊 Oceano</option>
+                  <option value="PRAIA">🏖️ Praia</option>
+                  <option value="VULCAO">🌋 Vulcão</option>
+                  <option value="CAMPO">🌾 Campo</option>
+                  <option value="DESERTO">🏜️ Deserto</option>
+                  <option value="ESPACO">🌌 Espaço</option>
+                  <option value="CIDADE">🏙️ Cidade</option>
+                  <option value="CAVERNA">🕳️ Caverna</option>
+                  <option value="PANTANO">🌿 Pântano</option>
+                  <option value="RIO">🌧️ Rio</option>
+                  <option value="LAGO">💧 Lago</option>
+                  <option value="CEU">☁️ Céu</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+              </div>
+              <span class="form-field__hint">Onde este Pokémon costuma ser encontrado.</span>
+            </div>
+
+            <!-- FASE DE EVOLUÇÃO -->
+            <div class="form-field">
+              <label for="faseEvolucao" class="form-field__label">
+                <i class="fa-solid fa-dna"></i> Fase de Evolução
+              </label>
+              <div class="evolution-choice" role="radiogroup" aria-labelledby="faseEvolucao">
+                <input type="radio" id="fase-1" name="faseEvolucao" value="1" class="evolution-choice__input" checked>
+                <label for="fase-1" class="evolution-choice__pill">
+                  <span class="evolution-choice__dot"></span>
+                  Básico
+                </label>
+
+                <input type="radio" id="fase-2" name="faseEvolucao" value="2" class="evolution-choice__input">
+                <label for="fase-2" class="evolution-choice__pill">
+                  <span class="evolution-choice__dot"></span>
+                  Estágio 1
+                </label>
+
+                <input type="radio" id="fase-3" name="faseEvolucao" value="3" class="evolution-choice__input">
+                <label for="fase-3" class="evolution-choice__pill">
+                  <span class="evolution-choice__dot"></span>
+                  Estágio 2
+                </label>
+              </div>
+              <span class="form-field__hint">Estágio evolutivo atual do Pokémon.</span>
+            </div>
+
+            <!-- GERAÇÃO -->
+            <div class="form-field">
+              <label for="geracao" class="form-field__label">
+                <i class="fa-solid fa-earth-americas"></i> Geração
+              </label>
+              <div class="select-wrap">
+                <select id="geracao" name="geracao" class="form-field__select">
+                  <option value="" disabled selected>Selecione a geração</option>
+                  <option value="1" data-dot="#F08030">1ª Geração — Kanto</option>
+                  <option value="2" data-dot="#F8D030">2ª Geração — Johto</option>
+                  <option value="3" data-dot="#78C850">3ª Geração — Hoenn</option>
+                  <option value="4" data-dot="#6890F0">4ª Geração — Sinnoh</option>
+                  <option value="5" data-dot="#98D8D8">5ª Geração — Unova</option>
+                  <option value="6" data-dot="#EE99AC">6ª Geração — Kalos</option>
+                  <option value="7" data-dot="#F85888">7ª Geração — Alola</option>
+                  <option value="8" data-dot="#7038F8">8ª Geração — Galar</option>
+                  <option value="9" data-dot="#A040A0">9ª Geração — Paldea</option>
+                </select>
+                <span class="select-wrap__dot" style="--dot-color:#F08030"></span>
+                <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+              </div>
+              <span class="form-field__hint">Jogo/região em que o Pokémon foi introduzido.</span>
+            </div>
+
+            <!-- BOTÕES -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">
+                <i class="fa-solid fa-plus"></i>
+                Cadastrar Pokémon
+              </button>
+              <button type="reset" class="btn btn--secondary">
+                <i class="fa-solid fa-eraser"></i>
+                Limpar Campos
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ---------- COLUNA PRÉVIA ---------- -->
+        <div class="preview-column">
+          <div class="section-heading section-heading--center">
+            <span class="section-heading__eyebrow"><i class="fa-solid fa-eye"></i> Pré-visualização</span>
+            <h2>Card da Pokédex</h2>
+          </div>
+
+          <article class="poke-card poke-card--preview" id="preview-card">
+            <div class="poke-card__glow" aria-hidden="true"></div>
+
+            <header class="poke-card__header">
+              <div class="poke-card__pokeball" aria-hidden="true"></div>
+              <span class="poke-card__number">#001</span>
+            </header>
+
+            <div class="poke-card__body">
+              <h3 class="poke-card__name" id="preview-nome">Nome do Pokémon</h3>
+
+              <div class="poke-card__badges">
+                <span class="type-badge" id="preview-tipo1" data-type="">Tipo Primário</span>
+                <span class="type-badge type-badge--muted" id="preview-tipo2" data-type="">Tipo Secundário</span>
+              </div>
+
+              <dl class="poke-card__meta">
+                <div class="poke-card__meta-item">
+                  <dt><i class="fa-solid fa-mountain-sun"></i> Habitat</dt>
+                  <dd id="preview-habitat">—</dd>
+                </div>
+                <div class="poke-card__meta-item">
+                  <dt><i class="fa-solid fa-earth-americas"></i> Geração</dt>
+                  <dd id="preview-geracao">—</dd>
+                </div>
+                <div class="poke-card__meta-item">
+                  <dt><i class="fa-solid fa-dna"></i> Evolução</dt>
+                  <dd id="preview-evolucao">Básico</dd>
+                </div>
+              </dl>
+
+              <div class="poke-card__color-strip" id="preview-cor">
+                <span>Cor predominante</span>
+              </div>
+
+              <div class="poke-card__stats">
+                <div class="stat-bar">
+                  <span class="stat-bar__label"><i class="fa-solid fa-bolt"></i> Energia</span>
+                  <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--energy"></div></div>
+                </div>
+                <div class="stat-bar">
+                  <span class="stat-bar__label"><i class="fa-solid fa-star"></i> Raridade</span>
+                  <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--rarity"></div></div>
+                </div>
+                <div class="stat-bar">
+                  <span class="stat-bar__label"><i class="fa-solid fa-heart"></i> Afinidade</span>
+                  <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--affinity"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <footer class="poke-card__footer">
+              <span class="poke-card__seal"><i class="fa-solid fa-certificate"></i> Pokédex Entry</span>
+            </footer>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== MINHA POKÉDEX ===================== -->
+    <section class="panel panel--minha-pokedex" aria-labelledby="titulo-minha-pokedex">
+      <div class="section-heading">
+        <span class="section-heading__eyebrow"><i class="fa-solid fa-layer-group"></i> Coleção</span>
+        <h2 id="titulo-minha-pokedex">Minha Pokédex</h2>
+        <p>Pesquise, filtre e organize os Pokémon que você já cadastrou.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" placeholder="Pesquisar Pokémon..." aria-label="Pesquisar Pokémon" id="pesquisa-pokemon">
+        </div>
+
+        <div class="toolbar__filters">
+          <div class="select-wrap select-wrap--compact">
+            <select id="filtro-geracao" aria-label="Filtrar por geração">
+              <option value="">Todas as gerações</option>
+              <option value="1">1ª Geração</option>
+              <option value="2">2ª Geração</option>
+              <option value="3">3ª Geração</option>
+              <option value="4">4ª Geração</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+          </div>
+
+          <div class="select-wrap select-wrap--compact">
+            <select id="filtro-tipo" aria-label="Filtrar por tipo">
+              <option value="">Todos os tipos</option>
+              <option value="ELECTRIC">Electric</option>
+              <option value="FIRE">Fire</option>
+              <option value="WATER">Water</option>
+              <option value="GRASS">Grass</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
+          </div>
+
+          <button type="button" class="btn btn--icon" id="btn-ordenar" aria-label="Ordenar">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            Ordenar
+          </button>
+        </div>
+      </div>
+
+      <div class="poke-grid">
+
+        <!-- Card 1 - Pikachu -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#025</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Pikachu</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="ELECTRIC">Electric</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>🌳 Floresta</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>1 — Kanto</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Intermediário</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+        <!-- Card 2 - Charizard -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#006</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Charizard</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="FIRE">Fire</span>
+              <span class="type-badge" data-type="FLYING">Flying</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>🌋 Vulcão</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>1 — Kanto</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Evolução Final</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#F08030;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+        <!-- Card 3 - Bulbasaur -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#001</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Bulbasaur</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="GRASS">Grass</span>
+              <span class="type-badge" data-type="POISON">Poison</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>🌾 Campo</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>1 — Kanto</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Básico</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#4CAF50;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+        <!-- Card 4 - Lucario -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#448</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Lucario</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="FIGHTING">Fighting</span>
+              <span class="type-badge" data-type="STEEL">Steel</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>⛰️ Montanha</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>4 — Sinnoh</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Evolução Final</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#3B4CCA;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+        <!-- Card 5 - Gengar -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#094</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Gengar</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="GHOST">Ghost</span>
+              <span class="type-badge" data-type="POISON">Poison</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>🕳️ Caverna</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>1 — Kanto</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Evolução Final</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#705898;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+        <!-- Card 6 - Gardevoir -->
+        <article class="poke-card">
+          <header class="poke-card__header">
+            <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+            <span class="poke-card__number">#282</span>
+          </header>
+          <div class="poke-card__body">
+            <h3 class="poke-card__name">Gardevoir</h3>
+            <div class="poke-card__badges">
+              <span class="type-badge" data-type="PSYCHIC">Psychic</span>
+              <span class="type-badge" data-type="FAIRY">Fairy</span>
+            </div>
+            <dl class="poke-card__meta poke-card__meta--compact">
+              <div class="poke-card__meta-item"><dt>Habitat</dt><dd>🏙️ Cidade</dd></div>
+              <div class="poke-card__meta-item"><dt>Geração</dt><dd>3 — Hoenn</dd></div>
+              <div class="poke-card__meta-item"><dt>Evolução</dt><dd>Evolução Final</dd></div>
+            </dl>
+            <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#EE99AC;"></div>
+          </div>
+          <footer class="poke-card__footer poke-card__footer--actions">
+            <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+            <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== DASHBOARD DE ESTATÍSTICAS ===================== -->
+    <section class="panel panel--stats" aria-labelledby="titulo-stats">
+      <div class="section-heading">
+        <span class="section-heading__eyebrow"><i class="fa-solid fa-chart-simple"></i> Painel</span>
+        <h2 id="titulo-stats">Estatísticas da Pokédex</h2>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card stat-card--red">
+          <div class="stat-card__icon"><i class="fa-solid fa-database"></i></div>
+          <div class="stat-card__info">
+            <span class="stat-card__value" id="stat-total">152</span>
+            <span class="stat-card__label">Quantidade cadastrada</span>
+            <span class="stat-card__desc">Pokémon na sua coleção</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card--yellow">
+          <div class="stat-card__icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="stat-card__info">
+            <span class="stat-card__value" id="stat-tipo">Electric</span>
+            <span class="stat-card__label">Tipo mais comum</span>
+            <span class="stat-card__desc">Predominância elemental</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card--blue">
+          <div class="stat-card__icon"><i class="fa-solid fa-earth-americas"></i></div>
+          <div class="stat-card__info">
+            <span class="stat-card__value" id="stat-geracao">Kanto</span>
+            <span class="stat-card__label">Geração mais frequente</span>
+            <span class="stat-card__desc">Região com mais registros</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card--green">
+          <div class="stat-card__icon"><i class="fa-solid fa-tree"></i></div>
+          <div class="stat-card__info">
+            <span class="stat-card__value" id="stat-habitat">Floresta</span>
+            <span class="stat-card__label">Habitat predominante</span>
+            <span class="stat-card__desc">Ambiente mais recorrente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== GRÁFICO DE DISTRIBUIÇÃO ===================== -->
+      <div class="chart-panel">
+        <div class="section-heading">
+          <span class="section-heading__eyebrow"><i class="fa-solid fa-chart-pie"></i> Análise</span>
+          <h3>Distribuição dos Tipos</h3>
+          <p>Espaço reservado para gráfico dinâmico (Chart.js) via Spring Boot.</p>
+        </div>
+
+        <div class="chart-panel__content">
+          <div class="chart-placeholder" id="grafico-tipos" role="img" aria-label="Espaço reservado para gráfico de distribuição de tipos">
+            <div class="chart-placeholder__ring"></div>
+            <div class="chart-placeholder__center">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>Chart.js</span>
+            </div>
+          </div>
+
+          <ul class="chart-legend">
+            <li><span class="chart-legend__dot" data-type="ELECTRIC"></span> Electric</li>
+            <li><span class="chart-legend__dot" data-type="FIRE"></span> Fire</li>
+            <li><span class="chart-legend__dot" data-type="WATER"></span> Water</li>
+            <li><span class="chart-legend__dot" data-type="GRASS"></span> Grass</li>
+            <li><span class="chart-legend__dot" data-type="PSYCHIC"></span> Psychic</li>
+            <li><span class="chart-legend__dot" data-type="DRAGON"></span> Dragon</li>
+            <li><span class="chart-legend__dot" data-type="FAIRY"></span> Fairy</li>
+            <li><span class="chart-legend__dot" data-type="ROCK"></span> Rock</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <p class="site-footer__copy">Pokédex Ideal &copy; 2026</p>
+
+    <div class="site-footer__tech">
+      <span class="site-footer__tech-label">Tecnologias futuras:</span>
+      <span class="tech-badge"><i class="fa-solid fa-leaf"></i> Spring Boot</span>
+      <span class="tech-badge"><i class="fa-brands fa-java"></i> Java</span>
+      <span class="tech-badge"><i class="fa-solid fa-database"></i> MySQL</span>
+      <span class="tech-badge"><i class="fa-solid fa-network-wired"></i> REST API</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
