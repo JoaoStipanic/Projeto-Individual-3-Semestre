@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/pokemons")
 public class PokemonController {
@@ -21,7 +22,7 @@ public class PokemonController {
     @GetMapping("/listar")
     public ResponseEntity<List<Pokemon>> listar() {
         String sql = """
-                SELECT id, nome, tipo1, tipo2, corPredominante, habitat, faseEvolucao, geracao FROM pokemon
+                SELECT idPokemon, nome, tipo1, tipo2, corPredominante, habitat, faseEvolucao, geracao FROM pokemon
                 """;
 
         try {
@@ -57,7 +58,7 @@ public class PokemonController {
                 ps.setString(3, pokemon.getTipo2());
                 ps.setString(4, pokemon.getCorPredominante());
                 ps.setString(5, pokemon.getHabitat());
-                ps.setInt(6, pokemon.getFaseEvolucao());
+                ps.setString(6, pokemon.getFaseEvolucao());
                 ps.setInt(7, pokemon.getGeracao());
 
                 return ps;

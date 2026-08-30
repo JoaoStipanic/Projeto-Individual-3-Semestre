@@ -1,19 +1,19 @@
 package individual.projeto.back;
 
 public class Pokemon {
-    private Integer id;
+    private Integer idPokemon;
     private String nome;
     private String tipo1;
     private String tipo2;
     private String corPredominante;
     private String habitat;
-    private Integer faseEvolucao;
+    private String faseEvolucao;
     private Integer geracao;
 
     public Pokemon() {}
 
-    public Pokemon(Integer id, String nome, String tipo1, String tipo2, String corPredominante, String habitat, Integer faseEvolucao, Integer geracao) {
-        this.id = id;
+    public Pokemon(Integer idPokemon, String nome, String tipo1, String tipo2, String corPredominante, String habitat, String faseEvolucao, Integer geracao) {
+        this.idPokemon = idPokemon;
         this.nome = nome;
         this.tipo1 = tipo1;
         this.tipo2 = tipo2;
@@ -24,11 +24,11 @@ public class Pokemon {
     }
 
     public Integer getId() {
-        return id;
+        return idPokemon;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idPokemon = id;
     }
 
     public String getNome() {
@@ -71,11 +71,11 @@ public class Pokemon {
         this.habitat = habitat;
     }
 
-    public Integer getFaseEvolucao() {
+    public String getFaseEvolucao() {
         return faseEvolucao;
     }
 
-    public void setFaseEvolucao(Integer faseEvolucao) {
+    public void setFaseEvolucao(String faseEvolucao) {
         this.faseEvolucao = faseEvolucao;
     }
 
