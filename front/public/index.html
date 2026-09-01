@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="styles/style.css">
 </head>
-<body>
+<body onload="iniciar()">
 
 <!-- ===================== BACKGROUND DECORATIVO ===================== -->
 <div class="bg-decor" aria-hidden="true">
@@ -88,24 +88,6 @@
                 <div class="select-wrap">
                   <select id="tipo1" name="tipo1" class="form-field__select">
                     <option value="" disabled selected>Selecione um tipo</option>
-                    <option value="NORMAL" data-dot="#A8A878">Normal</option>
-                    <option value="FOGO" data-dot="#F08030">Fogo</option>
-                    <option value="AGUA" data-dot="#6890F0">Água</option>
-                    <option value="PLANTA" data-dot="#78C850">Planta</option>
-                    <option value="ELETRICO" data-dot="#F8D030">Elétrico</option>
-                    <option value="GELO" data-dot="#98D8D8">Gelo</option>
-                    <option value="LUTA" data-dot="#C03028">Luta</option>
-                    <option value="VENENO" data-dot="#A040A0">Veneno</option>
-                    <option value="TERRESTRE" data-dot="#E0C068">Terrestre</option>
-                    <option value="VOADOR" data-dot="#A890F0">Voador</option>
-                    <option value="PSIQUICO" data-dot="#F85888">Psíquico</option>
-                    <option value="INSETO" data-dot="#A8B820">Inseto</option>
-                    <option value="PEDRA" data-dot="#B8A038">Pedra</option>
-                    <option value="FANTASMA" data-dot="#705898">Fantasma</option>
-                    <option value="DRAGAO" data-dot="#7038F8">Dragão</option>
-                    <option value="SOMBRIO" data-dot="#705848">Sombrio</option>
-                    <option value="METAL" data-dot="#B8B8D0">Metal</option>
-                    <option value="FADA" data-dot="#EE99AC">Fada</option>
                   </select>
                   <span class="select-wrap__dot" style="--dot-color:#A8A878"></span>
                   <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
@@ -119,25 +101,7 @@
                 </label>
                 <div class="select-wrap">
                   <select id="tipo2" name="tipo2" class="form-field__select">
-                    <option value="NENHUM" data-dot="#4B5563" selected>Nenhum</option>
-                    <option value="NORMAL" data-dot="#A8A878">Normal</option>
-                    <option value="FOGO" data-dot="#F08030">Fogo</option>
-                    <option value="AGUA" data-dot="#6890F0">Água</option>
-                    <option value="PLANTA" data-dot="#78C850">Planta</option>
-                    <option value="ELETRICO" data-dot="#F8D030">Elétrico</option>
-                    <option value="GELO" data-dot="#98D8D8">Gelo</option>
-                    <option value="LUTA" data-dot="#C03028">Luta</option>
-                    <option value="VENENO" data-dot="#A040A0">Veneno</option>
-                    <option value="TERRESTRE" data-dot="#E0C068">Terrestre</option>
-                    <option value="VOADOR" data-dot="#A890F0">Voador</option>
-                    <option value="PSIQUICO" data-dot="#F85888">Psíquico</option>
-                    <option value="INSETO" data-dot="#A8B820">Inseto</option>
-                    <option value="PEDRA" data-dot="#B8A038">Pedra</option>
-                    <option value="FANTASMA" data-dot="#705898">Fantasma</option>
-                    <option value="DRAGAO" data-dot="#7038F8">Dragão</option>
-                    <option value="SOMBRIO" data-dot="#705848">Sombrio</option>
-                    <option value="METAL" data-dot="#B8B8D0">Metal</option>
-                    <option value="FADA" data-dot="#EE99AC">Fada</option>
+                    <option value="null" data-dot="#4B5563" selected>Nenhum</option>
                   </select>
                   <span class="select-wrap__dot" style="--dot-color:#4B5563"></span>
                   <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
