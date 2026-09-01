@@ -75,7 +75,7 @@
               <label for="nome" class="form-field__label">
                 <i class="fa-solid fa-signature"></i> Nome
               </label>
-              <input type="text" id="nome" name="nome" class="form-field__input" placeholder="Pikachu" autocomplete="off" oninput="preVisualizacao()">
+              <input type="text" id="nomePokemon" name="nome" class="form-field__input" placeholder="Pikachu" autocomplete="off">
               <span class="form-field__hint">Nome do Pokémon.</span>
             </div>
 
@@ -86,7 +86,7 @@
                   <i class="fa-solid fa-bolt"></i> Tipo Primário
                 </label>
                 <div class="select-wrap">
-                  <select id="tipo1" name="tipo1" class="form-field__select">
+                  <select id="tipo1" name="tipo1" class="form-field__select" oninput="preVisualizacao">
                     <option value="" disabled selected>Selecione um tipo</option>
                   </select>
                   <span class="select-wrap__dot" style="--dot-color:#A8A878"></span>
@@ -144,16 +144,16 @@
               <div class="select-wrap">
                 <select id="habitat" name="habitat" class="form-field__select">
                   <option value="" disabled selected>Selecione um habitat</option>
-                  <option value="FLORESTA">🌲 Floresta</option>
-                  <option value="MONTANHA">⛰️ Montanha</option>
-                  <option value="OCEANO">🌊 Oceano</option>
-                  <option value="PRAIA">🏖️ Praia</option>
-                  <option value="CAVERNA">🕳️ Caverna</option>
-                  <option value="CAMPO">🌾 Campo</option>
-                  <option value="CIDADE">🏙️ Cidade</option>
-                  <option value="VULCAO">🌋 Vulcão</option>
-                  <option value="ESPACO">🌌 Espaço</option>
-                  <option value="RARO">✨ Habitat Raro</option>
+                  <option value="🌲 Floresta">🌲 Floresta</option>
+                  <option value="⛰️ Montanha">⛰️ Montanha</option>
+                  <option value="🌊 Oceano">🌊 Oceano</option>
+                  <option value="🏖️ Praia">🏖️ Praia</option>
+                  <option value="🕳️ Caverna">🕳️ Caverna</option>
+                  <option value="🌾 Campo">🌾 Campo</option>
+                  <option value="🏙️ Cidade">🏙️ Cidade</option>
+                  <option value="🌋 Vulcão">🌋 Vulcão</option>
+                  <option value="🌌 Espaço">🌌 Espaço</option>
+                  <option value="✨ Habitat Raro">✨ Habitat Raro</option>
                 </select>
                 <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
               </div>
@@ -166,19 +166,19 @@
                 <i class="fa-solid fa-dna"></i> Fase de Evolução
               </label>
               <div class="evolution-choice" role="radiogroup" aria-labelledby="faseEvolucao">
-                <input type="radio" id="fase-1" name="faseEvolucao" value="1" class="evolution-choice__input" checked>
+                <input type="radio" id="fase-1" name="faseEvolucao" value="Básico" class="evolution-choice__input" checked>
                 <label for="fase-1" class="evolution-choice__pill">
                   <span class="evolution-choice__dot"></span>
                   Básico
                 </label>
 
-                <input type="radio" id="fase-2" name="faseEvolucao" value="2" class="evolution-choice__input">
+                <input type="radio" id="fase-2" name="faseEvolucao" value="Estágio 1" class="evolution-choice__input">
                 <label for="fase-2" class="evolution-choice__pill">
                   <span class="evolution-choice__dot"></span>
                   Estágio 1
                 </label>
 
-                <input type="radio" id="fase-3" name="faseEvolucao" value="3" class="evolution-choice__input">
+                <input type="radio" id="fase-3" name="faseEvolucao" value="Estágio 2" class="evolution-choice__input">
                 <label for="fase-3" class="evolution-choice__pill">
                   <span class="evolution-choice__dot"></span>
                   Estágio 2
@@ -195,15 +195,15 @@
               <div class="select-wrap">
                 <select id="geracao" name="geracao" class="form-field__select">
                   <option value="" disabled selected>Selecione a geração</option>
-                  <option value="1" data-dot="#F08030">1ª Geração — Kanto</option>
-                  <option value="2" data-dot="#F8D030">2ª Geração — Johto</option>
-                  <option value="3" data-dot="#78C850">3ª Geração — Hoenn</option>
-                  <option value="4" data-dot="#6890F0">4ª Geração — Sinnoh</option>
-                  <option value="5" data-dot="#98D8D8">5ª Geração — Unova</option>
-                  <option value="6" data-dot="#EE99AC">6ª Geração — Kalos</option>
-                  <option value="7" data-dot="#F85888">7ª Geração — Alola</option>
-                  <option value="8" data-dot="#7038F8">8ª Geração — Galar</option>
-                  <option value="9" data-dot="#A040A0">9ª Geração — Paldea</option>
+                  <option value="1ª Geração — Kanto" data-dot="#F08030">1ª Geração — Kanto</option>
+                  <option value="2ª Geração — Johto" data-dot="#F8D030">2ª Geração — Johto</option>
+                  <option value="3ª Geração — Hoenn" data-dot="#78C850">3ª Geração — Hoenn</option>
+                  <option value="4ª Geração — Sinnoh" data-dot="#6890F0">4ª Geração — Sinnoh</option>
+                  <option value="5ª Geração — Unova" data-dot="#98D8D8">5ª Geração — Unova</option>
+                  <option value="6ª Geração — Kalos" data-dot="#EE99AC">6ª Geração — Kalos</option>
+                  <option value="7ª Geração — Alola" data-dot="#F85888">7ª Geração — Alola</option>
+                  <option value="8ª Geração — Galar" data-dot="#7038F8">8ª Geração — Galar</option>
+                  <option value="9ª Geração — Paldea" data-dot="#A040A0">9ª Geração — Paldea</option>
                 </select>
                 <span class="select-wrap__dot" style="--dot-color:#F08030"></span>
                 <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
@@ -213,7 +213,7 @@
 
             <!-- BOTÕES -->
             <div class="form-actions">
-              <button type="submit" class="btn btn--primary">
+              <button class="btn btn--primary" onclick="cadastrar()">
                 <i class="fa-solid fa-plus"></i>
                 Cadastrar Pokémon
               </button>

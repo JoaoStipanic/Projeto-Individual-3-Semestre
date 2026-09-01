@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS pokemon (
     corPredominante VARCHAR(50) NOT NULL,
     habitat VARCHAR(100) NOT NULL,
     faseEvolucao VARCHAR(30) NOT NULL,
-    geracao INT NOT NULL
+    geracao VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tipo (

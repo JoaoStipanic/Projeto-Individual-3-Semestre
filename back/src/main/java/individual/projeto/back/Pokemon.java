@@ -3,32 +3,28 @@ package individual.projeto.back;
 public class Pokemon {
     private Integer idPokemon;
     private String nome;
-    private String tipo1;
-    private String tipo2;
     private String corPredominante;
     private String habitat;
     private String faseEvolucao;
-    private Integer geracao;
+    private String geracao;
 
     public Pokemon() {}
 
-    public Pokemon(Integer idPokemon, String nome, String tipo1, String tipo2, String corPredominante, String habitat, String faseEvolucao, Integer geracao) {
+    public Pokemon(Integer idPokemon, String nome, String corPredominante, String habitat, String faseEvolucao, String geracao) {
         this.idPokemon = idPokemon;
         this.nome = nome;
-        this.tipo1 = tipo1;
-        this.tipo2 = tipo2;
         this.corPredominante = corPredominante;
         this.habitat = habitat;
         this.faseEvolucao = faseEvolucao;
         this.geracao = geracao;
     }
 
-    public Integer getId() {
+    public Integer getIdPokemon() {
         return idPokemon;
     }
 
-    public void setId(Integer id) {
-        this.idPokemon = id;
+    public void setIdPokemon(Integer idPokemon) {
+        this.idPokemon = idPokemon;
     }
 
     public String getNome() {
@@ -37,22 +33,6 @@ public class Pokemon {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getTipo1() {
-        return tipo1;
-    }
-
-    public void setTipo1(String tipo1) {
-        this.tipo1 = tipo1;
-    }
-
-    public String getTipo2() {
-        return tipo2;
-    }
-
-    public void setTipo2(String tipo2) {
-        this.tipo2 = tipo2;
     }
 
     public String getCorPredominante() {
@@ -79,11 +59,11 @@ public class Pokemon {
         this.faseEvolucao = faseEvolucao;
     }
 
-    public Integer getGeracao() {
+    public String getGeracao() {
         return geracao;
     }
 
-    public void setGeracao(Integer geracao) {
+    public void setGeracao(String geracao) {
         this.geracao = geracao;
     }
 }
