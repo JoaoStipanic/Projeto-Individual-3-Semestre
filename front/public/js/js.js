@@ -23,6 +23,49 @@ function iniciar() {
         .catch(error => {
             console.error(`Erro no fetch - GET url/tipos`)
         })
+
+
+    fetch(`${url}/pokemons`, {
+        method: "GET"
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(pokemons => {
+                    pokemons.forEach(element => {
+                        document.getElementById("painel_cards").innerHTML += `
+                            <article id="${element.idPokemon}" class="poke-card">
+                                <header class="poke-card__header">
+                                    <div class="poke-card__pokeball poke-card__pokeball--sm" aria-hidden="true"></div>
+                                    <span class="poke-card__number">#${element.idPokemon}</span>
+                                </header>
+                                <div class="poke-card__body">
+                                    <h3 class="poke-card__name">${element.nome}</h3>
+                                    <div class="poke-card__badges">
+                                    <span class="type-badge" data-type="">${element.tipo1}</span>
+                                    </div>
+                                    <dl class="poke-card__meta poke-card__meta--compact">
+                                    <div class="poke-card__meta-item"><dt>Habitat</dt><dd>${element.habitat}</dd></div>
+                                    <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
+                                    <div class="poke-card__meta-item"><dt>Evolução</dt><dd>${element.faseEvolucao}</dd></div>
+                                    </dl>
+                                    <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
+                                </div>
+                                <footer class="poke-card__footer poke-card__footer--actions">
+                                    <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+                                </footer>
+                            </article>
+                        `
+                    })
+                })
+
+            } else {
+                console.log("Erro na requisição")
+            }
+        })
+        .catch(error => {
+            console.error("Erro no fetch - GET url/pokemons")
+        })
 }
 
 function cadastrar() {

@@ -61,40 +61,6 @@ public class PokemonController {
         return ResponseEntity.status(200).body(lista);
     }
 
-//    @PostMapping
-//    public ResponseEntity<Pokemon> cadastrar(@RequestBody Pokemon pokemon) {
-//        String sql = """
-//                INSERT INTO pokemon (nome, corPredominante, habitat, faseEvolucao, geracao) VALUES
-//                    (?, ?, ?, ?, ?);
-//
-//                INSERT INTO pokemonTipo (idPokemon, idTipo)
-//                """;
-//
-//        KeyHolder keyHolder = new GeneratedKeyHolder();
-//
-//        try {
-//            jdbcTemplate.update(connection -> {
-//                PreparedStatement ps  = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//
-//                ps.setString(1, pokemon.getNome());
-//                ps.setString(4, pokemon.getCorPredominante());
-//                ps.setString(5, pokemon.getHabitat());
-//                ps.setString(6, pokemon.getFaseEvolucao());
-//                ps.setInt(7, pokemon.getGeracao());
-//
-//                return ps;
-//            }, keyHolder);
-//
-//            Integer idGerado = keyHolder.getKey().intValue();
-//            pokemon.setIdPokemon(idGerado);
-//
-//            return ResponseEntity.status(201).body(pokemon);
-//
-//        } catch (Exception e) {
-//            return ResponseEntity.status(500).build();
-//        }
-//    }
-
     @Transactional
     @PostMapping
     public ResponseEntity<Pokemon> cadastrar(@RequestBody Map<String, Object> dados) {
@@ -104,27 +70,20 @@ public class PokemonController {
                 """;
 
         String sqlPokemonTipo = """
-                INSERT INTO pokemonTipo (idPokemon, idTipo) VALUES 
+                INSERT INTO pokemonTipo (idPokemon, idTipo) VALUES
                     (?, ?)
                 """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         try {
-            // Dados do Pokémon
             String nome = (String) dados.get("nome");
             String corPredominante = (String) dados.get("corPredominante");
             String habitat = (String) dados.get("habitat");
             String faseEvolucao = (String) dados.get("faseEvolucao");
             String geracao = (String) dados.get("geracao");
 
-            // Tipos
             Integer tipo1 = ((Number) dados.get("tipo1")).intValue();
-            Integer tipo2 = null;
-
-            if (dados.get("tipo2") != null) {
-                tipo2 = ((Number) dados.get("tipo2")).intValue();
-            }
 
             // Cadastra o Pokémon
             jdbcTemplate.update(con -> {
@@ -137,10 +96,8 @@ public class PokemonController {
                 ps.setString(5, geracao);
 
                 return ps;
-
             }, keyHolder);
 
-            // ID gerado pelo banco
             Integer idPokemon = keyHolder.getKey().intValue();
 
             // Associação com o tipo 1
@@ -150,10 +107,10 @@ public class PokemonController {
             );
 
             // Associação com o tipo 2
-            if (tipo2 != null) {
+            if (dados.get("tipo2") != null) {
                 jdbcTemplate.update(sqlPokemonTipo,
                         idPokemon,
-                        tipo2
+                        ((Number) dados.get("tipo2")).intValue()
                 );
             }
 
