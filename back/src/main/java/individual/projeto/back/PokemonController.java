@@ -30,7 +30,7 @@ public class PokemonController {
         String sql = """
                 SELECT
                     p.idPokemon,
-                    p.nome AS nomePokemon,
+                    p.nome,
                     STRING_AGG(t.nome, '/') AS tipos,
                     p.corPredominante,
                     p.habitat,
