@@ -32,6 +32,9 @@ function iniciar() {
             if (response.ok) {
                 response.json().then(pokemons => {
                     pokemons.forEach(element => {
+                        tipo1 = element.tipos.split("/")[0]
+                        tipo2 = element.tipos.split("/")[1]
+
                         document.getElementById("painel_cards").innerHTML += `
                             <article id="${element.idPokemon}" class="poke-card">
                                 <header class="poke-card__header">
@@ -40,13 +43,13 @@ function iniciar() {
                                 </header>
                                 <div class="poke-card__body">
                                     <h3 class="poke-card__name">${element.nome}</h3>
-                                    <div class="poke-card__badges">
-                                    <span class="type-badge" data-type="">${element.tipo1}</span>
+                                    <div id="${element.idPokemon}_card_tipos" class="poke-card__badges">
+                                        <span class="type-badge" data-type="">${tipo1}</span>
                                     </div>
                                     <dl class="poke-card__meta poke-card__meta--compact">
-                                    <div class="poke-card__meta-item"><dt>Habitat</dt><dd>${element.habitat}</dd></div>
-                                    <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
-                                    <div class="poke-card__meta-item"><dt>Evolução</dt><dd>${element.faseEvolucao}</dd></div>
+                                        <div class="poke-card__meta-item"><dt>Habitat</dt><dd>${element.habitat}</dd></div>
+                                        <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
+                                        <div class="poke-card__meta-item"><dt>Evolução</dt><dd>${element.faseEvolucao}</dd></div>
                                     </dl>
                                     <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
                                 </div>
@@ -56,6 +59,9 @@ function iniciar() {
                                 </footer>
                             </article>
                         `
+                        if (tipo2 != undefined) {
+                            document.getElementById(`${element.idPokemon}_card_tipos`).innerHTML += `<span class="type-badge" data-type="">${tipo2}</span>`
+                        }
                     })
                 })
 

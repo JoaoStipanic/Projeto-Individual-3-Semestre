@@ -1,6 +1,5 @@
 package individual.projeto.back;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -26,7 +25,7 @@ public class PokemonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Pokemon>> listar() {
+    public ResponseEntity<List<PokemonResposta>> listar() {
         String sql = """
                 SELECT
                     p.idPokemon,
@@ -51,13 +50,12 @@ public class PokemonController {
                 ORDER BY p.idPokemon
                 """;
 
-        List<Pokemon> lista = jdbcTemplate
-                    .query(sql, new BeanPropertyRowMapper<>(Pokemon.class));
+        List<PokemonResposta> lista = jdbcTemplate
+                    .query(sql, new BeanPropertyRowMapper<>(PokemonResposta.class));
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(204).build();
         }
-
         return ResponseEntity.status(200).body(lista);
     }
 
@@ -65,7 +63,7 @@ public class PokemonController {
     @PostMapping
     public ResponseEntity<Pokemon> cadastrar(@RequestBody Map<String, Object> dados) {
         String sqlPokemon = """
-                INSERT INTO pokemon (nome, corPredominante, habitat, faseEvolucao, geracao) VALUES 
+                INSERT INTO pokemon (nome, corPredominante, habitat, faseEvolucao, geracao) VALUES
                     (?, ?, ?, ?, ?)
                 """;
 

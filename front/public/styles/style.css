@@ -60,7 +60,6 @@ body{
   background-image: url("../assets/fundo.png"); #important
   background-repeat: no-repeat;
   background-size: cover;
-  /* background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 55%, var(--bg-start) 100%); */
   background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
@@ -672,7 +671,6 @@ button{ font-family: inherit; cursor: pointer; }
 .poke-card{
   position: relative;
   background: linear-gradient(160deg, var(--card-bg-soft), var(--card-bg));
-  /* border: 1px solid var(--border-soft-strong); */
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -747,6 +745,11 @@ button{ font-family: inherit; cursor: pointer; }
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 16px;
+}
+
+.poke-card__footer{
+  padding-left: 5%;
+  margin-bottom: 5%;
 }
 
 .type-badge{
