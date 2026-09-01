@@ -16,28 +16,46 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokemons")
 public class PokemonController {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/listar")
+    public PokemonController(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @GetMapping
     public ResponseEntity<List<Pokemon>> listar() {
         String sql = """
-                SELECT idPokemon, nome, tipo1, tipo2, corPredominante, habitat, faseEvolucao, geracao FROM pokemon
+                SELECT
+                    p.idPokemon,
+                    p.nome AS nomePokemon,
+                    STRING_AGG(t.nome, '/') AS tipos,
+                    p.corPredominante,
+                    p.habitat,
+                    p.faseEvolucao,
+                    p.geracao
+                FROM pokemon p
+                    LEFT JOIN pokemonTipo pt
+                        ON p.idPokemon = pt.idPokemon
+                    LEFT JOIN tipo t
+                        ON pt.idTipo = t.idTipo
+                GROUP BY
+                    p.idPokemon,
+                    p.nome,
+                    p.corPredominante,
+                    p.habitat,
+                    p.faseEvolucao,
+                    p.geracao
+                ORDER BY p.idPokemon
                 """;
 
-        try {
-            List<Pokemon> lista = jdbcTemplate
+        List<Pokemon> lista = jdbcTemplate
                     .query(sql, new BeanPropertyRowMapper<>(Pokemon.class));
 
-            if (lista.isEmpty()) {
-                return ResponseEntity.status(204).build();
-            }
-
-            return ResponseEntity.status(200).body(lista);
-
-        } catch (Exception e) {
-            return ResponseEntity.status(500).build();
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(204).build();
         }
+
+        return ResponseEntity.status(200).body(lista);
     }
 
     @PostMapping
