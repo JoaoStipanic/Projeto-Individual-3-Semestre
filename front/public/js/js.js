@@ -30,7 +30,11 @@ function iniciar() {
         .then(response => {
             if (response.status == 200) {
                 response.json().then(pokemons => {
+                    contadorPokemom = 0
+
                     pokemons.forEach(element => {
+                        contadorPokemom++
+
                         tipo1 = element.tipos.split("/")[0]
                         tipo2 = element.tipos.split("/")[1]
 
@@ -50,7 +54,7 @@ function iniciar() {
                                         <div class="poke-card__meta-item"><dt>Evolução</dt><dd>${element.faseEvolucao}</dd></div>
                                         <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
                                     </dl>
-                                    <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
+                                    <div id="${element.idPokemon}_corPredo" class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
                                 </div>
                                 <footer class="poke-card__footer poke-card__footer--actions">
                                     <button type="button" class="btn-mini btn-mini--delete" onclick="deletar(${element.idPokemon})"><i class="fa-solid fa-trash"></i> Excluir</button>
@@ -59,11 +63,15 @@ function iniciar() {
                         `
                         if (tipo2 != undefined) {
                             document.getElementById(`${element.idPokemon}_card_tipos`).innerHTML += `<span id="${element.idPokemon}_tipo2" class="type-badge" data-type="">${tipo2}</span>`
+                            document.getElementById(`${element.idPokemon}_tipo2`).style.background = corTipo(tipo2)
                         }
 
                         document.getElementById(`${element.idPokemon}_tipo1`).style.background = corTipo(tipo1)
-                        document.getElementById(`${element.idPokemon}_tipo2`).style.background = corTipo(tipo2)
+
+                        document.getElementById(`${element.idPokemon}_corPredo`).style.background = corPredominante(element.corPredominante)
                     })
+
+                    document.getElementById("contador-pokemon").innerHTML = `${contadorPokemom} Pokémon`
                 })
 
             } else if (response.status == 204) {
@@ -158,13 +166,19 @@ function preVisualizacao() {
 
     // Tipo 1
     tipo1 = document.getElementById("tipo1")
-    document.getElementById("preview-tipo1").innerHTML = tipo1.options[tipo1.selectedIndex].text
+    tipo1_option = tipo1.options[tipo1.selectedIndex].text
+
+    document.getElementById("preview-tipo1").innerHTML = tipo1_option
+    document.getElementById("preview-tipo1").style.background = corTipo(tipo1_option)
 
     // Tipo 2
     tipo2 = document.getElementById("tipo2")
+    tipo2_option = tipo2.options[tipo2.selectedIndex].text
+
     elemento = document.getElementById("preview-tipo2")
     elemento.classList.remove("type-badge--muted")
-    elemento.innerHTML = tipo2.options[tipo2.selectedIndex].text
+    elemento.innerHTML = tipo2_option
+    elemento.style.background = corTipo(tipo2_option)
 
     // Habitat
     habitat = document.getElementById("habitat")
@@ -176,6 +190,12 @@ function preVisualizacao() {
     // Geração
     geracao = document.getElementById("geracao")
     document.getElementById("preview-geracao").innerHTML = geracao.options[geracao.selectedIndex].text
+
+    // Cor predominante
+    cor_select = document.getElementById("corPredominante")
+    cor_option = cor_select.options[cor_select.selectedIndex].value
+    console.log(cor_option)
+    document.getElementById("preview-cor").style.background = corPredominante(cor_option)
 }
 
 function corTipo(tipo) {
@@ -187,7 +207,7 @@ function corTipo(tipo) {
         "Elétrico": "#F7D02C",
         "Gelo": "#96D9D6",
         "Luta": "#C22E28",
-        "Venenoso": "#A33EA1",
+        "Veneno": "#A33EA1",
         "Terrestre": "#E2BF65",
         "Voador": "#A98FF3",
         "Psíquico": "#F95587",
@@ -198,7 +218,25 @@ function corTipo(tipo) {
         "Sombrio": "#705746",
         "Metal": "#B7B7A4",
         "Fada": "#D685AD"
-    };
+    }
 
     return cores[tipo]
+}
+
+function corPredominante(cor) {
+    const cores = {
+        "VERMELHO": "#E94B5F",
+        "AZUL": "#5B8FD9",
+        "VERDE": "#65C98A",
+        "AMARELO": "#F2C14E",
+        "ROXO": "#9B7AC4",
+        "ROSA": "#EC5A91",
+        "PRETO": "#4A4245",
+        "BRANCO": "#D9D5E3",
+        "MARROM": "#8B5E62",
+        "CINZA": "#A9A7B3",
+        "LARANJA": "#FF704D"
+    }
+
+    return cores[cor]
 }

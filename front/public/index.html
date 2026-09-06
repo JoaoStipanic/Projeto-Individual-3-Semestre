@@ -15,7 +15,7 @@
 <body onload="iniciar()">
 
 <!-- ===================== BACKGROUND DECORATIVO ===================== -->
-<div class="bg-decor" aria-hidden="true">
+<!-- <div class="bg-decor" aria-hidden="true">
   <div class="bg-grid"></div>
   <div class="bg-glow bg-glow--red"></div>
   <div class="bg-glow bg-glow--blue"></div>
@@ -33,7 +33,7 @@
   <span class="bg-dot bg-dot--3"></span>
   <span class="bg-dot bg-dot--4"></span>
   <span class="bg-dot bg-dot--5"></span>
-</div>
+</div> -->
 
 <div class="app-shell">
 
@@ -49,7 +49,7 @@
     <div class="site-header__right">
       <div class="header-panel">
         <span class="header-panel__label">Total cadastrado</span>
-        <span class="header-panel__badge" id="contador-pokemon">0 Pokémon</span>
+        <span class="header-panel__badge" id="contador-pokemon">0</span>
       </div>
     </div>
   </header>
@@ -116,7 +116,7 @@
                 <i class="fa-solid fa-palette"></i> Cor Predominante
               </label>
               <div class="select-wrap">
-                <select id="corPredominante" name="corPredominante" class="form-field__select">
+                <select id="corPredominante" name="corPredominante" class="form-field__select" oninput="preVisualizacao()">
                   <option value="" disabled selected>Selecione uma cor</option>
                   <option value="VERMELHO" data-dot="#E3350D">🔴Vermelho</option>
                   <option value="AZUL" data-dot="#3B4CCA">🔵Azul</option>
