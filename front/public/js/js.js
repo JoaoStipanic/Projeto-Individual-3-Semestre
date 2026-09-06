@@ -12,16 +12,15 @@ function iniciar() {
                         document.getElementById("tipo2").innerHTML += `<option value="${element.idTipo}" data-dot="#A8A878">${element.nome}</option>`
 
                     });
-
-                    document.getElementById("tipo1").innerHTML
-
                 });
             } else {
-                console.log(`Erro na API`)
+                console.log(`Erro no fetch - GET url/tipos`)
             }
         })
         .catch(error => {
-            console.error(`Erro no fetch - GET url/tipos`)
+            console.error(`Erro na API`)
+            alert("Houve um erro no servidor, a página será recarregada. Caso o erro persista, tente novamente mais tarde!")
+            window.location.reload()
         })
 
 
@@ -29,7 +28,7 @@ function iniciar() {
         method: "GET"
     })
         .then(response => {
-            if (response.ok) {
+            if (response.status == 200) {
                 response.json().then(pokemons => {
                     pokemons.forEach(element => {
                         tipo1 = element.tipos.split("/")[0]
@@ -55,7 +54,7 @@ function iniciar() {
                                 </div>
                                 <footer class="poke-card__footer poke-card__footer--actions">
                                     <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button type="button" class="btn-mini btn-mini--delete"><i class="fa-solid fa-trash"></i> Excluir</button>
+                                    <button type="button" class="btn-mini btn-mini--delete" onclick="deletar(${element.idPokemon})"><i class="fa-solid fa-trash"></i> Excluir</button>
                                 </footer>
                             </article>
                         `
@@ -65,12 +64,17 @@ function iniciar() {
                     })
                 })
 
+            } else if (response.status == 204) {
+                console.log("Sem pokemons na pokedex")
+
             } else {
-                console.log("Erro na requisição")
+                console.log("Erro no fetch - GET url/pokemons")
             }
         })
         .catch(error => {
-            console.error("Erro no fetch - GET url/pokemons")
+            console.error("Erro na API")
+            alert("Houve um erro no servidor, a página será recarregada. Caso o erro persista, tente novamente mais tarde!")
+            window.location.reload()
         })
 }
 
@@ -103,7 +107,7 @@ function cadastrar() {
                 id: null,
                 nome: nome,
                 tipo1: Number(tipo1),
-                tipo2: tipo2 != null ? Number(tipo2) : null,
+                tipo2: tipo2 != null ? Number(tipo2) : "",
                 corPredominante: corPredominante,
                 habitat: habitat,
                 faseEvolucao: faseEvolucao,
@@ -116,13 +120,34 @@ function cadastrar() {
                     alert("Pokémon cadastrado na sua Pokédex")
 
                 } else {
-                    console.log("Ouve um erro ao tentar cadastrar o Pokémon")
+                    console.log("Erro no fetch - POST url/pokemons")
                 }
             })
             .catch(error => {
-                console.log("Erro no fetch - POST url/pokemons")
+                console.log("Erro na API")
+                alert("Houve um erro no servidor, a página será recarregada. Caso o erro persista, tente novamente mais tarde!")
+                window.location.reload()
             })
     }
+}
+
+function deletar(idPokemon) {
+    fetch(`${url}/pokemons/${idPokemon}`, {
+        method: "DELETE"
+    })
+        .then(reponse => {
+            if(reponse.status == 204) {
+                console.log("delete funcionou")
+                window.location.reload()
+            } else {
+                console.log(`Erro no fetch - DELETE url/pokemons`)
+            }
+        })
+        .catch(error => {
+            console.error(`Erro na API`)
+            alert("Houve um erro no servidor, a página será recarregada. Caso o erro persista, tente novamente mais tarde!")
+            window.location.reload()
+        })
 }
 
 function preVisualizacao() {

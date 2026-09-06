@@ -128,4 +128,53 @@ public class PokemonController {
             return ResponseEntity.status(500).build();
         }
     }
+
+    @Transactional
+    @DeleteMapping("/{idPokemon}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer idPokemon) {
+        String sql = """
+                DELETE FROM pokemonTipo WHERE idPokemon = ?;
+
+                DELETE FROM pokemon WHERE idPokemon = ?;
+                """;
+
+        String sqlSelect = """
+                SELECT
+                    p.idPokemon,
+                    p.nome,
+                    STRING_AGG(t.nome, '/') AS tipos,
+                    p.corPredominante,
+                    p.habitat,
+                    p.faseEvolucao,
+                    p.geracao
+                FROM pokemon p
+                    LEFT JOIN pokemonTipo pt
+                        ON p.idPokemon = pt.idPokemon
+                    LEFT JOIN tipo t
+                        ON pt.idTipo = t.idTipo
+                WHERE p.idPokemon = ?
+                GROUP BY
+                    p.idPokemon,
+                    p.nome,
+                    p.corPredominante,
+                    p.habitat,
+                    p.faseEvolucao,
+                    p.geracao
+                ORDER BY p.idPokemon
+                """;
+
+        List<PokemonResposta> listaPokekemon = jdbcTemplate.query(sqlSelect, new BeanPropertyRowMapper<>(PokemonResposta.class), idPokemon);
+
+        if (listaPokekemon.isEmpty()){
+            return ResponseEntity.status(404).build();
+
+        } else if (listaPokekemon.size() > 1) {
+            return ResponseEntity.status(409).build();
+
+        } else {
+            jdbcTemplate.update(sql, idPokemon, idPokemon);
+
+            return ResponseEntity.status(204).build();
+        }
+    }
 }
