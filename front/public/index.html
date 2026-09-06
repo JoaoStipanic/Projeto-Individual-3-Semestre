@@ -75,7 +75,7 @@
               <label for="nome" class="form-field__label">
                 <i class="fa-solid fa-signature"></i> Nome
               </label>
-              <input type="text" id="nomePokemon" name="nome" class="form-field__input" placeholder="Pikachu" autocomplete="off">
+              <input type="text" id="nomePokemon" name="nome" class="form-field__input" placeholder="Pikachu" autocomplete="off" oninput="preVisualizacao()">
               <span class="form-field__hint">Nome do Pokémon.</span>
             </div>
 
@@ -86,10 +86,10 @@
                   <i class="fa-solid fa-bolt"></i> Tipo Primário
                 </label>
                 <div class="select-wrap">
-                  <select id="tipo1" name="tipo1" class="form-field__select" oninput="preVisualizacao">
+                  <select id="tipo1" name="tipo1" class="form-field__select" oninput="preVisualizacao()">
                     <option value="" disabled selected>Selecione um tipo</option>
                   </select>
-                  <span class="select-wrap__dot" style="--dot-color:#A8A878"></span>
+                  <span class="select-wrap__dot" style="--dot-color:#FFCB05"></span>
                   <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
                 </div>
                 <span class="form-field__hint">Tipo elemental principal.</span>
@@ -100,10 +100,10 @@
                   <i class="fa-solid fa-bolt-lightning"></i> Tipo Secundário
                 </label>
                 <div class="select-wrap">
-                  <select id="tipo2" name="tipo2" class="form-field__select">
+                  <select id="tipo2" name="tipo2" class="form-field__select" oninput="preVisualizacao()">
                     <option value="null" data-dot="#4B5563" selected>Nenhum</option>
                   </select>
-                  <span class="select-wrap__dot" style="--dot-color:#4B5563"></span>
+                  <span class="select-wrap__dot" style="--dot-color:#FFCB05"></span>
                   <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
                 </div>
                 <span class="form-field__hint">Tipo elemental adicional (opcional).</span>
@@ -118,19 +118,19 @@
               <div class="select-wrap">
                 <select id="corPredominante" name="corPredominante" class="form-field__select">
                   <option value="" disabled selected>Selecione uma cor</option>
-                  <option value="VERMELHO" data-dot="#E3350D">Vermelho</option>
-                  <option value="AZUL" data-dot="#3B4CCA">Azul</option>
-                  <option value="VERDE" data-dot="#4CAF50">Verde</option>
-                  <option value="AMARELO" data-dot="#FFCB05">Amarelo</option>
-                  <option value="ROXO" data-dot="#8E44AD">Roxo</option>
-                  <option value="ROSA" data-dot="#EE99AC">Rosa</option>
-                  <option value="PRETO" data-dot="#1F2937">Preto</option>
-                  <option value="BRANCO" data-dot="#F9FAFB">Branco</option>
-                  <option value="MARROM" data-dot="#8B5E3C">Marrom</option>
-                  <option value="CINZA" data-dot="#9CA3AF">Cinza</option>
-                  <option value="LARANJA" data-dot="#F08030">Laranja</option>
+                  <option value="VERMELHO" data-dot="#E3350D">🔴Vermelho</option>
+                  <option value="AZUL" data-dot="#3B4CCA">🔵Azul</option>
+                  <option value="VERDE" data-dot="#4CAF50">🟢Verde</option>
+                  <option value="AMARELO" data-dot="#FFCB05">🟡Amarelo</option>
+                  <option value="ROXO" data-dot="#8E44AD">🟣Roxo</option>
+                  <option value="ROSA" data-dot="#EE99AC">🩷Rosa</option>
+                  <option value="PRETO" data-dot="#1F2937">⚫Preto</option>
+                  <option value="BRANCO" data-dot="#F9FAFB">⚪Branco</option>
+                  <option value="MARROM" data-dot="#8B5E3C">🟤Marrom</option>
+                  <option value="CINZA" data-dot="#9CA3AF">🩶Cinza</option>
+                  <option value="LARANJA" data-dot="#F08030">🟠Laranja</option>
                 </select>
-                <span class="select-wrap__dot" style="--dot-color:#E3350D"></span>
+                <span class="select-wrap__dot" style="--dot-color:#FFCB05"></span>
                 <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
               </div>
               <span class="form-field__hint">Cor mais marcante do Pokémon.</span>
@@ -142,7 +142,7 @@
                 <i class="fa-solid fa-mountain-sun"></i> Habitat
               </label>
               <div class="select-wrap">
-                <select id="habitat" name="habitat" class="form-field__select">
+                <select id="habitat" name="habitat" class="form-field__select" oninput="preVisualizacao()">
                   <option value="" disabled selected>Selecione um habitat</option>
                   <option value="🌲 Floresta">🌲 Floresta</option>
                   <option value="⛰️ Montanha">⛰️ Montanha</option>
@@ -165,7 +165,7 @@
               <label for="faseEvolucao" class="form-field__label">
                 <i class="fa-solid fa-dna"></i> Fase de Evolução
               </label>
-              <div class="evolution-choice" role="radiogroup" aria-labelledby="faseEvolucao">
+              <div class="evolution-choice" role="radiogroup" aria-labelledby="faseEvolucao" oninput="preVisualizacao()">
                 <input type="radio" id="fase-1" name="faseEvolucao" value="Básico" class="evolution-choice__input" checked>
                 <label for="fase-1" class="evolution-choice__pill">
                   <span class="evolution-choice__dot"></span>
@@ -193,7 +193,7 @@
                 <i class="fa-solid fa-earth-americas"></i> Geração
               </label>
               <div class="select-wrap">
-                <select id="geracao" name="geracao" class="form-field__select">
+                <select id="geracao" name="geracao" class="form-field__select" oninput="preVisualizacao()">
                   <option value="" disabled selected>Selecione a geração</option>
                   <option value="1ª - Kanto" data-dot="#F08030">1ª - Kanto</option>
                   <option value="2ª - Johto" data-dot="#F8D030">2ª - Johto</option>
@@ -205,7 +205,7 @@
                   <option value="8ª - Galar" data-dot="#7038F8">8ª - Galar</option>
                   <option value="9ª - Paldea" data-dot="#A040A0">9ª - Paldea</option>
                 </select>
-                <span class="select-wrap__dot" style="--dot-color:#F08030"></span>
+                <span class="select-wrap__dot" style="--dot-color:#FFCB05"></span>
                 <i class="fa-solid fa-chevron-down select-wrap__chevron"></i>
               </div>
               <span class="form-field__hint">Jogo/região em que o Pokémon foi introduzido.</span>
@@ -252,12 +252,12 @@
                   <dd id="preview-habitat">—</dd>
                 </div>
                 <div class="poke-card__meta-item">
-                  <dt><i class="fa-solid fa-earth-americas"></i> Geração</dt>
-                  <dd id="preview-geracao">—</dd>
+                  <dt><i class="fa-solid fa-dna"></i> Evolução</dt>
+                  <dd id="preview-evolucao">—</dd>
                 </div>
                 <div class="poke-card__meta-item">
-                  <dt><i class="fa-solid fa-dna"></i> Evolução</dt>
-                  <dd id="preview-evolucao">Básico</dd>
+                  <dt><i class="fa-solid fa-earth-americas"></i> Geração</dt>
+                  <dd id="preview-geracao">—</dd>
                 </div>
               </dl>
 
@@ -265,7 +265,7 @@
                 <span>Cor predominante</span>
               </div>
 
-              <div class="poke-card__stats">
+              <!-- <div class="poke-card__stats">
                 <div class="stat-bar">
                   <span class="stat-bar__label"><i class="fa-solid fa-bolt"></i> Energia</span>
                   <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--energy"></div></div>
@@ -277,12 +277,11 @@
                 <div class="stat-bar">
                   <span class="stat-bar__label"><i class="fa-solid fa-heart"></i> Afinidade</span>
                   <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--affinity"></div></div>
-                </div>
+                </div> -->
               </div>
             </div>
           </article>
         </div>
-
       </div>
     </section>
 

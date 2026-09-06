@@ -43,24 +43,26 @@ function iniciar() {
                                 <div class="poke-card__body">
                                     <h3 class="poke-card__name">${element.nome}</h3>
                                     <div id="${element.idPokemon}_card_tipos" class="poke-card__badges">
-                                        <span class="type-badge" data-type="">${tipo1}</span>
+                                        <span id="${element.idPokemon}_tipo1" class="type-badge" data-type="">${tipo1}</span>
                                     </div>
                                     <dl class="poke-card__meta poke-card__meta--compact">
                                         <div class="poke-card__meta-item"><dt>Habitat</dt><dd>${element.habitat}</dd></div>
-                                        <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
                                         <div class="poke-card__meta-item"><dt>Evolução</dt><dd>${element.faseEvolucao}</dd></div>
+                                        <div class="poke-card__meta-item"><dt>Geração</dt><dd>${element.geracao}</dd></div>
                                     </dl>
                                     <div class="poke-card__color-strip poke-card__color-strip--sm" style="--strip-color:#FFCB05;"></div>
                                 </div>
                                 <footer class="poke-card__footer poke-card__footer--actions">
-                                    <button type="button" class="btn-mini btn-mini--edit"><i class="fa-solid fa-pen"></i> Editar</button>
                                     <button type="button" class="btn-mini btn-mini--delete" onclick="deletar(${element.idPokemon})"><i class="fa-solid fa-trash"></i> Excluir</button>
                                 </footer>
                             </article>
                         `
                         if (tipo2 != undefined) {
-                            document.getElementById(`${element.idPokemon}_card_tipos`).innerHTML += `<span class="type-badge" data-type="">${tipo2}</span>`
+                            document.getElementById(`${element.idPokemon}_card_tipos`).innerHTML += `<span id="${element.idPokemon}_tipo2" class="type-badge" data-type="">${tipo2}</span>`
                         }
+
+                        document.getElementById(`${element.idPokemon}_tipo1`).style.background = corTipo(tipo1)
+                        document.getElementById(`${element.idPokemon}_tipo2`).style.background = corTipo(tipo2)
                     })
                 })
 
@@ -154,7 +156,49 @@ function preVisualizacao() {
     // Nome
     document.getElementById("preview-nome").innerHTML = document.getElementById("nomePokemon").value
 
-    // Tipos
-    select1 = document.getElementById("tipo1")
-    document.getElementById("preview-tipo1").innerHTML = select1.options[select1.selectedIndex].text
+    // Tipo 1
+    tipo1 = document.getElementById("tipo1")
+    document.getElementById("preview-tipo1").innerHTML = tipo1.options[tipo1.selectedIndex].text
+
+    // Tipo 2
+    tipo2 = document.getElementById("tipo2")
+    elemento = document.getElementById("preview-tipo2")
+    elemento.classList.remove("type-badge--muted")
+    elemento.innerHTML = tipo2.options[tipo2.selectedIndex].text
+
+    // Habitat
+    habitat = document.getElementById("habitat")
+    document.getElementById("preview-habitat").innerHTML = habitat.options[habitat.selectedIndex].text
+
+    // Evolução
+    document.getElementById("preview-evolucao").innerHTML = document.querySelector('input[name="faseEvolucao"]:checked').value;
+
+    // Geração
+    geracao = document.getElementById("geracao")
+    document.getElementById("preview-geracao").innerHTML = geracao.options[geracao.selectedIndex].text
+}
+
+function corTipo(tipo) {
+    const cores = {
+        "Normal": "#A8A77A",
+        "Fogo": "#EE8130",
+        "Água": "#6390F0",
+        "Planta": "#7AC74C",
+        "Elétrico": "#F7D02C",
+        "Gelo": "#96D9D6",
+        "Luta": "#C22E28",
+        "Venenoso": "#A33EA1",
+        "Terrestre": "#E2BF65",
+        "Voador": "#A98FF3",
+        "Psíquico": "#F95587",
+        "Inseto": "#A6B91A",
+        "Pedra": "#B6A136",
+        "Fantasma": "#735797",
+        "Dragão": "#6F35FC",
+        "Sombrio": "#705746",
+        "Metal": "#B7B7A4",
+        "Fada": "#D685AD"
+    };
+
+    return cores[tipo]
 }

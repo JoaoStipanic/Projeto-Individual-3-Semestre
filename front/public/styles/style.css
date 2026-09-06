@@ -921,6 +921,10 @@ button{ font-family: inherit; cursor: pointer; }
 /* =========================================================
    MINHA POKÉDEX — TOOLBAR
    ========================================================= */
+.panel--minha-pokedex {
+  margin: 0px 2%;
+}
+
 .toolbar{
   display: flex;
   align-items: center;
